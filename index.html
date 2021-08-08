@@ -84,7 +84,9 @@
           score++;
         } else {
           $(".ans").text("False");
-          score--;
+          if(score != 0){
+            score--
+          }
         }
         $(".scr").text(`Score:${score}`);
         $(".toast").toast("show");
