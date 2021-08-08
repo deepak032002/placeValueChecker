@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Place Value</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-6">
+          <h2>
+            <strong>Tell The place value of</strong>
+            <span class="fst-italic sData">A</span>
+          </h2>
+          <div class="input-group my-3">
+            <input
+              type="text"
+              class="form-control uAns"
+              placeholder="Value"
+              aria-label="Value"
+            />
+          </div>
+          <button type="button" id="liveToastBtn" class="btn btn-warning">
+            Check
+          </button>
+
+          <button type="button" id="next" class="btn btn-secondary">
+            Next
+          </button>
+        </div>
+      </div>
+
+      <!-- toast code -->
+      <div
+        class="position-fixed top-20 start-50 p-3"
+        style="z-index: 11; transform: translateX(-50%)"
+      >
+        <div
+          id="liveToast"
+          class="toast hide"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header">
+            <!-- <img src="..." class="rounded me-2" alt="..." /> -->
+            <strong class="me-auto scr">Score:0</strong>
+            <!-- <small>11 mins ago</small> -->
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body ans">True</div>
+        </div>
+      </div>
+      <!-- toast code -->
+    </div>
+    <script>
+      const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let score = 0;
+      let prev = 0;
+      let pos = 0;
+      $("#liveToastBtn").click(function () {
+        console.log(pos + 1);
+        if ($(".uAns").val() == pos + 1) {
+          $(".ans").text("True");
+          score++;
+        } else {
+          $(".ans").text("False");
+          score--;
+        }
+        $(".scr").text(`Score:${score}`);
+        $(".toast").toast("show");
+      });
+
+      $("#next").click(() => {
+        pos = Math.floor(Math.random() * 26);
+        if (pos === prev) {
+          pos = 26 - pos;
+        }
+        prev = pos;
+        $(".sData").text(alpha.charAt(pos));
+        $(".toast").toast("hide");
+      });
+    </script>
+  </body>
+</html>
