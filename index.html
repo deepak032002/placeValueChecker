@@ -92,7 +92,7 @@
 
       $("#next").click(() => {
         pos = Math.floor(Math.random() * 26);
-        if (pos === prev) {
+        if (pos == prev) {
           pos = 26 - pos;
         }
         prev = pos;
