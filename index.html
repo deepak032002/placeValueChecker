@@ -28,7 +28,7 @@
           </h2>
           <div class="input-group my-3">
             <input
-              type="text"
+              type="number"
               class="form-control uAns"
               placeholder="Value"
               aria-label="Value"
@@ -38,9 +38,7 @@
             Check
           </button>
 
-          <button type="button" id="next" class="btn btn-success">
-            Next
-          </button>
+          <button type="button" id="next" class="btn btn-success">Next</button>
         </div>
       </div>
 
@@ -77,22 +75,24 @@
       let score = 0;
       let prev = 0;
       let pos = 0;
-      $("#liveToastBtn").click(function () {
-        console.log(pos + 1);
+
+      //mouse function
+
+      $("#liveToastBtn").click(function (e) {
         if ($(".uAns").val() == pos + 1) {
           $(".ans").text("True");
           score++;
         } else {
           $(".ans").text("False");
-          if(score != 0){
-            score--
+          if (score != 0) {
+            score--;
           }
         }
         $(".scr").text(`Score:${score}`);
         $(".toast").toast("show");
       });
 
-      $("#next").click(() => {
+      $("#next").click((e) => {
         pos = Math.floor(Math.random() * 26);
         if (pos == prev) {
           pos = 26 - pos;
@@ -100,6 +100,36 @@
         prev = pos;
         $(".sData").text(alpha.charAt(pos));
         $(".toast").toast("hide");
+      });
+
+      //keyboard Function
+
+      $("html").keydown((e) => {
+        $('.uAns').focus();
+
+        if (e.keyCode == 39) {
+          pos = Math.floor(Math.random() * 26);
+          if (pos == prev) {
+            pos = 26 - pos;
+          }
+          prev = pos;
+          $(".sData").text(alpha.charAt(pos));
+          $(".toast").toast("hide");
+        }
+
+        if (e.keyCode == 13) {
+          if ($(".uAns").val() == pos + 1) {
+            $(".ans").text("True");
+            score++;
+          } else {
+            $(".ans").text("False");
+            if (score != 0) {
+              score--;
+            }
+          }
+          $(".scr").text(`Score:${score}`);
+          $(".toast").toast("show");
+        }
       });
     </script>
   </body>
