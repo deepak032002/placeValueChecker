@@ -93,6 +93,7 @@
       });
 
       $("#next").click((e) => {
+        $('.uAns').text('')
         pos = Math.floor(Math.random() * 26);
         if (pos == prev) {
           pos = 26 - pos;
@@ -106,7 +107,6 @@
 
       $("html").keydown((e) => {
         $('.uAns').focus();
-
         if (e.keyCode == 39) {
           pos = Math.floor(Math.random() * 26);
           if (pos == prev) {
@@ -115,6 +115,7 @@
           prev = pos;
           $(".sData").text(alpha.charAt(pos));
           $(".toast").toast("hide");
+          $('.uAns').text('')
         }
 
         if (e.keyCode == 13) {
