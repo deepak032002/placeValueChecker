@@ -108,9 +108,9 @@
       //keyboard Function
 
       $("html").keydown((e) => {
-        alert(e.keyCode);
+
         $('.uAns').focus();
-        if (e.keyCode == 32) {
+        if (e.keyCode == 32 || e.keyCode == 229) {
           pos = Math.floor(Math.random() * 26);
           if (pos == prev) {
             pos = 26 - pos;
