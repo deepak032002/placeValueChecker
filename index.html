@@ -108,6 +108,7 @@
       //keyboard Function
 
       $("html").keydown((e) => {
+        alert(e.keyCode);
         $('.uAns').focus();
         if (e.keyCode == 32) {
           pos = Math.floor(Math.random() * 26);
